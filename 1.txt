@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+void selection_sort(int A[], int size) {
+    int count, key;
+    int j,i;
+    for (i=0; i<size-1; i++) {
+        count=A[i]; key=i;
+        for (j=i+1; j<size; j++)
+        if (A[j]<A[key]) key=j;
+        if (key!=i) {
+            A[i]=A[key];
+            A[key]=count;
+        }
+    }
+    cout<<"Rezult mass: ";
+    for (i=0; i<size; i++) cout<<A[i]<<" ";
+}
+
+int main()
+{
+  int *A;
+    int size;
+    cout<<"Enter size: \n";
+    cin >> size;
+    cout<<"Enter array: \n";
+    A=new int[size];
+    for(int i=0;i < size; i++)
+        cin >> A[i];
+    selection_sort(A, size);
+}
