@@ -1,0 +1,185 @@
+Задание 1. Сортировка выбором
+
+#include <iostream>
+#include <ctime>
+#include <string>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+const int arr_size = 5;
+
+void st(int arr[], const int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		int arr_min = INT_MAX;
+		int index_min = 0;
+		for (int j = i; j < size; j++)
+		{
+			if (arr[j] < arr_min)
+			{
+				arr_min = arr[j];
+				index_min = j;
+			}
+		}
+		swap(arr[i], arr[index_min]);
+	}
+	return;
+}
+
+int main()
+{
+
+	int arr[arr_size] = { 17,58,1480,54 };
+	st(arr, arr_size);
+	for (int i = 0; i < arr_size; i++)
+	{
+		cout << arr[i] << ' ';
+	}
+	return 0;
+}
+
+Задание 2. Пузырьковая сортировка
+
+#include <iostream>
+#include <ctime>
+#include <string>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "rus");
+
+    int digitals[10]; 
+
+    cout << "Enter 10 numbers for sorting" << endl;
+
+    for (int i = 0; i < 10; i++) {
+        cin >> digitals[i]; 
+    }
+
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (digitals[j] > digitals[j + 1]) {
+                int b = digitals[j]; 
+                digitals[j] = digitals[j + 1]; 
+                digitals[j + 1] = b; 
+            }
+        }
+    }
+
+    cout << "Sorted numbers";
+
+    for (int i = 0; i < 10; i++) {
+        cout << digitals[i] << " ";
+    }
+    system("pause");
+    return 0;
+}
+
+Задание 3. Сортировка вставками
+
+#include <iostream>
+#include <ctime>
+#include <iomanip>
+using namespace std;
+
+void insertionSort(int *, int);
+
+int main(int argc, char* argv[])
+{
+    srand(time(NULL));
+    setlocale(LC_ALL, "rus");
+    cout << "Enter size of massive: " << endl;
+    int size_array;
+    cin >> size_array;
+
+    int *sorted_array = new int [size_array];
+    for (int counter = 0; counter < size_array; counter++)
+    {
+        sorted_array[counter] = rand() % 100;
+        cout << setw(2) << sorted_array[counter] << "  ";
+    }
+    cout << "Sorted massive: ";
+
+    insertionSort(sorted_array, size_array);
+
+    for (int counter = 0; counter < size_array; counter++)
+    {
+        cout << setw(2) << sorted_array[counter] << "  ";
+    }
+    delete [] sorted_array;
+    system("pause");
+    return 0;
+}
+
+void insertionSort(int *arrayPtr, int length)
+{
+    int temp,
+    item;
+    for (int counter = 1; counter < length; counter++)
+    {
+        temp = arrayPtr[counter];
+        item = counter-1;
+        while(item >= 0 && arrayPtr[item] > temp)
+        {
+            arrayPtr[item + 1] = arrayPtr[item];
+            arrayPtr[item] = temp;
+            item--;
+        }
+    }
+}
+
+Задание 4. Сортировка слиянием
+
+#include <iostream>
+using namespace std;
+
+void Merge(int *A, int first, int last) {
+    int middle, start, final, j;
+    int *mas = new int[100];
+    middle = (first + last) / 2;
+    start = first;
+    final = middle + 1;
+    for (j = first; j <= last; j++)
+        if ((start <= middle) && ((final > last) || (A[start] < A[final]))) {
+            mas[j] = A[start];
+            start++;
+        } else {
+            mas[j] = A[final];
+            final++;
+        }
+    for (j = first; j <= last; j++)
+        A[j] = mas[j];
+    delete[] mas;
+};
+
+void MergeSort(int *A, int first, int last) {
+    if (first < last) {
+        MergeSort(A, first, (first + last) / 2);
+        MergeSort(A, (first + last) / 2 + 1, last);
+        Merge(A, first, last);
+    }
+}
+
+void main() {
+    setlocale(LC_ALL, "Rus");
+    int i, n;
+    int *A = new int[100];
+    cout << "Size of massive > ";
+    cin >> n;
+    for (i = 1; i <= n; i++) {
+        cout << i << " element > ";
+        cin >> A[i];
+    }
+    MergeSort(A, 1, n);
+    cout << "Sorted massive: ";
+    for (i = 1; i <= n; i++)
+        cout << A[i] << " ";
+    delete[] A;
+    system("pause>>void");
+}
