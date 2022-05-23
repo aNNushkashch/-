@@ -1,0 +1,43 @@
+Задание 1
+
+class Animal
+{
+public:
+    string name,feature,sound;
+    Animal(string name,string feature= " ",string sound=" ")
+    {
+        this->name=name;
+        this->feature=feature;
+        this->sound=sound;
+    }
+    string get_sound()
+    {
+        return sound;
+    }
+    string get_action()
+    {
+        return feature;
+    }
+};
+
+Задание 2
+
+class Farm_Animal : public Animal
+{
+public:
+    vector<string> resource;
+    Farm_Animal(string name,string feature,string sound,vector<string>resource): Animal(name,feature,sound)
+    {
+        this->resource= resource;
+    }
+    void get_source(string res)
+    {
+        int key= false;
+        for (int i = 0; i < resource.size(); i++)
+        {
+            if(res==resource[i]) key++;
+        }
+        if(key) cout << "Got "<< res <<" from "<<name<<endl;
+        else cout<< name << " has no " << res<< endl;
+    }
+};

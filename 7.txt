@@ -1,0 +1,54 @@
+1.
+def print_till_zero(k):
+    if k == 0:
+        return
+    print(k)
+    return print_till_zero(k-1)
+
+
+print(print_till_zero(10))
+
+2.
+def is_palindrome(n):
+    if len(n) == 0:
+        return True
+    if(n[0] == n[-1]):
+        return is_palindrome(n[1:-1])
+    return False
+
+3.
+def power(x,y):
+    if(y==0):
+        return 1
+    if(y % 2 != 0):
+        return power(x,y-1)*x
+    else:
+        n=power(x,y//2)
+        return n*n
+
+x,y=int(input()),int(input())
+print(power(x,y))
+
+4.
+def max_in(array):
+    if(len(array)==1):
+        return array[0]
+    if(array[0]>=array[-1]):
+        return max_in(array[:-2])
+    if(array[-1]>=array[0]):
+        return max_in(array[1:])
+
+
+array=(input().split(' '))
+for x in range(len(array)):
+    array[x]=int(array[x])
+
+print(array.index(max_in(array)))
+
+5.
+def fibbonachi(k):
+    if k in (1,2):
+        return 1
+    return fibbonachi(k-1)+fibbonachi(k-2)
+
+print(fibbonachi(int(input())))

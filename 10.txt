@@ -1,0 +1,102 @@
+Задание 1
+
+#include <iostream>
+#include <vector>
+#include <list>
+
+using namespace std;
+
+class Student{
+public:
+    string name;
+    string surname;
+    string hall;
+
+    Student(string n, string s, string m){
+        name = n;
+        surname = s;
+        hall = m;
+
+    };
+};
+class Teacher: public Student{
+public:
+    list<Student*> group;
+    short rank;
+    Teacher(string n1, string s1, string m1) : Student(n1, s1, m1) {
+        name = n1;
+        surname = s1;
+        hall = m1;
+
+    };
+    Teacher& visit_card(){
+        cout << "Surname: " << surname << endl;
+        cout << "Name: " << name << endl;
+        cout << "Hall: " << hall << endl;
+        cout << "Rank: " << rank << endl;
+    }
+};
+int main(){
+    Teacher Alex(  "Alex", "Valkov","200");
+    Student Pavlik( "Pavlik", "Zhukov", "199");
+    Student Leha( "Leha", "Birukov", "198");
+
+    Alex.group.push_back(&Pavlik);
+    Alex.group.push_back(&Leha);
+    Student *adress;
+    adress = &Pavlik;
+    Student frt1 = *adress; // frt1 = *&frt
+    return 0;
+}
+
+Задание 2
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+class Point{
+public:
+    int x, y, z;
+    Point(){
+        x = y = z = 0;
+    }
+    Point (int x, int y, int z){
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
+    void Print (){
+        cout << "X:"<< x<< "Y:"<< y<< "Z:"<< z << endl;
+    }
+};
+int main (){
+    string path = "test.txt";
+    Point point (1, 2, 5);
+    ofstream fout;
+    fout.open(path, ofstream::app);
+
+    fout.write((char *) &point, sizeof(Point));
+    fout.close();
+    return 0;
+}
+
+Задание 3
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    const int n = ; // размер массива
+    int a[n] = {}; // массив
+    for (int i = 0; i < n; i++)
+
+    {
+        cout << *(a+i) << endl;
+    }
+    return 0;
+}
